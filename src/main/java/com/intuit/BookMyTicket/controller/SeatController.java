@@ -47,13 +47,6 @@ public class SeatController {
         }
     }
 
-
-    @PostMapping("/theaters/{theaterId}/book")
-    public boolean bookSeats(@PathVariable Long theaterId, @RequestBody List<Long> seatNumbers) {
-        logger.info("Booking seats {} for theaterId: {}", seatNumbers, theaterId);
-        return seatService.bookSeats(theaterId, seatNumbers);
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Seat> addSeat(@RequestBody Seat seat) {
         logger.info("Adding new seat with seatNumber {} for theaterId: {}", seat.getSeatNumber(), seat.getTheaterId());
