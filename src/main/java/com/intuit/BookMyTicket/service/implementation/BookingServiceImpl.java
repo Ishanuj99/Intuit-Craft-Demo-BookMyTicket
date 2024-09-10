@@ -39,7 +39,6 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    @Cacheable(value = "availableSeats", key = "#theaterId")
     public List<Seat> getAvailableSeats(Long theaterId) {
         logger.info("Fetching available seats for theaterId: {}", theaterId);
         Supplier<List<Seat>> seatSupplier = () -> seatRepository.findByTheaterIdAndBookedFalse(theaterId);
@@ -48,7 +47,6 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "availableSeats", allEntries = true)
     public Booking bookSeats(Long showId, Long theaterId, Long userId, List<Long> seatNumbers) {
         boolean locksAcquired = seatService.lockSeats(theaterId, seatNumbers);
 

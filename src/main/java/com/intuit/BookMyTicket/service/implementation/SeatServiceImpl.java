@@ -31,7 +31,6 @@ public class SeatServiceImpl implements SeatService {
     }
 
     @Override
-    @Cacheable(value = "availableSeats", key = "#theaterId")
     public List<Seat> getAvailableSeats(Long theaterId) {
         logger.info("Fetching available seats for theaterId: {}", theaterId);
         return seatRepository.findByTheaterId(theaterId).stream()

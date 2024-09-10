@@ -64,7 +64,6 @@ public class CityTheaterServiceImpl implements CityTheaterService {
     }
 
     @Override
-    @Cacheable(value = "theaters", key = "#cityId")
     public List<Theater> getTheatersByCity(Long cityId) {
         logger.info("Fetching theaters for cityId: {}", cityId);
         return executeWithCircuitBreaker(() -> theaterRepository.findByCityId(cityId), t -> fallbackGetTheatersByCity(cityId, t));
