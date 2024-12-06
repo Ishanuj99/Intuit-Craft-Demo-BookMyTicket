@@ -50,7 +50,7 @@ public class SeatServiceImpl implements SeatService {
 
                 if (!seatLocked) {
                     // If any seat fails to lock, release all previously locked seats and return false
-                    unlockSeats(theaterId, seatNumbers);
+//                    unlockSeats(theaterId, seatNumbers);
                     logger.warn("Unable to lock seat {} for theaterId: {}", seatNumber, theaterId);
                     return false;
                 }
